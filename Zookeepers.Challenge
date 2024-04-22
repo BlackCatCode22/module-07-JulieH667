@@ -1,0 +1,62 @@
+package TheZookeeper;
+
+import java.util.*;
+
+public class ZookeepersChallenge {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("My Zookeeper's Challenge!");
+        System.out.println("Choose to see the Zoo");
+
+        // Get the number of habitats in the zoo
+        System.out.print("Enter the number of habitats in your zoo: ");
+        int numHabitats = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        Zoo zoo = new Zoo();
+
+        for (int i = 0; i < numHabitats; i++) {
+            System.out.println("\nHabitat #" + (i + 1));
+            System.out.print("Enter habitat name: ");
+            String habitatName = scanner.nextLine();
+
+            System.out.print("Enter the number of animals in this habitat: ");
+            int numAnimals = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            for (int j = 0; j < numAnimals; j++) {
+                System.out.println("\nEnter details for Animal #" + (j + 1));
+                System.out.print("Enter species: ");
+                String species = scanner.nextLine();
+
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
+
+                System.out.print("Enter age: ");
+                int age = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                System.out.print("Enter sex: ");
+                String sex = scanner.nextLine();
+
+                System.out.print("Enter color: ");
+                String color = scanner.nextLine();
+
+                System.out.print("Enter weight: ");
+                double weight = scanner.nextDouble();
+                scanner.nextLine(); // Consume newline
+
+                Animal animal = new Animal(name, age, sex, species, color, weight);
+                zoo.addHabitat(new Habitat(habitatName));
+                zoo.getHabitat(habitatName).addAnimal(animal);
+            }
+        }
+
+        // Generate report and save to file
+        zoo.saveZooPopulation("zooPopulation.txt");
+
+        scanner.close();
+    }
+}
